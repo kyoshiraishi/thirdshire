@@ -1,0 +1,511 @@
+baseURL: https://thirdshire.com/
+languageCode: en-us
+defaultContentLanguage: zh-cn
+title: "第三夏尔｜Third Shire"
+enableRobotsTXT: true
+enableEmoji: true
+theme: hugo-theme-luna
+timeout: 600000
+timeZone: America/Toronto
+
+# 可根据 Git 中的提交生成最近更新记录。
+# use git commit log to generate lastmod record
+enableGitInfo: false
+
+# 如果你的博客包含中日韩语，请启用此选项
+# enable CJK language support
+hasCJKLanguage: true
+
+# 每页显示文章数量
+# pagination size
+paginate: 10
+
+# 启用谷歌统计
+# google analytics tracking code
+# googleAnalytics: UA-98634098-1
+
+# 版权信息，默认为 author.name ↓
+default: author.name ↓
+copyright: "" 
+
+permalinks:
+  # 文章链接的格式
+  # Format of posts links
+  posts: /post/:slug # 2019/01/01/hello-world.html
+  pages: /:slug # about.html
+
+author:
+  name: 白石京
+
+frontmatter:
+  lastmod:
+    - :git
+    - lastmod
+    - :fileModTime
+    - date
+    - publishDate
+    - :default
+
+taxonomies:
+  tag: "tags"
+  category: "categories"
+
+summaryLength: 70
+canonifyURLs: false
+relativeURLs: false
+
+# 图像处理
+# see https://gohugo.io/content-management/image-processing/#imaging-configuration
+imaging:
+  resampleFilter: CatmullRom
+  quality: 95
+  anchor: smart
+
+# caches:
+#   getresource:
+#     dir: :resourceDir/_gen
+#     maxAge: 24h
+
+# 隐私政策，请查看 https://gohugo.io/about/hugo-and-gdpr/
+# See https://gohugo.io/about/hugo-and-gdpr/
+privacy:
+  googleAnalytics:
+    anonymizeIP: true
+  youtube:
+    privacyEnhanced: true
+
+sitemap:
+  changefreq: weekly
+  priority: 0.5
+  filename: sitemap.xml
+
+# 所有支持的页面
+# all supported pages
+$manuMain:
+  - &mainMenuHome
+    name: Home
+    weight: 10
+    identifier: home
+    params:
+      icon: eva eva-home
+    url: /
+  - &mainMenuAbout
+    name: About
+    weight: 20
+    identifier: about
+    params:
+      icon: eva eva-heart
+    url: /about/
+  - &mainMenuArchives
+    name: Archives
+    weight: 40
+    identifier: archives
+    params:
+      icon: eva eva-bar-chart
+    url: /archives/
+  - &mainMenuTags
+    name: Tags
+    weight: 50
+    identifier: tags
+    params:
+      icon: eva eva-hash
+    url: /tags/
+  - &mainMenuCategories
+    name: Categories
+    weight: 60
+    identifier: categories
+    params:
+      icon: eva eva-folder
+    url: /categories/
+  # - &mainMenuTwitter
+  #   name: Twitter
+  #   weight: 70
+  #   identifier: twitter
+  #   params:
+  #     icon: eva eva-twitter
+  #   url: /twitter/
+  # - &mainMenuGitHub
+  #   name: GitHub
+  #   weight: 80
+  #   identifier: github
+  #   params:
+  #     icon: eva eva-github
+  #   url: /github/
+  - &mainMenuSearch
+    name: Search
+    weight: 999
+    identifier: search
+    params:
+      icon: eva eva-search
+    url: /search/
+  - &mainMenuLinks
+    name: Links
+    weight: 80
+    identifier: links
+    params:
+      icon: eva eva-people
+    url: /links/
+  - &mainMenuRSS
+    name: RSS
+    weight: 90
+    identifier: rss
+    params:
+      icon: eva eva-link-outline
+    url: /index.xml
+# 如果你不想要导航栏，你可以删除这一段
+# If you don't want the navbar, you can delete this paragraph
+menu:
+  main:
+    - *mainMenuHome
+    - *mainMenuAbout
+    - *mainMenuArchives
+    - *mainMenuLinks
+    # - *mainMenuCategories
+    # - *mainMenuTags
+    # - *mainMenuTwitter
+    # - *mainMenuGitHub
+    - *mainMenuSearch
+  # 副导航 / sub-navigation
+  sub:
+    - name: Categories
+      weight: 20
+      identifier: categories
+      params:
+        icon: eva eva-folder
+      url: /categories/
+    - name: Tags
+      weight: 30
+      identifier: tags
+      params:
+        icon: eva eva-pricetags
+      url: /tags/
+
+markup:
+  highlight:
+    style: dracula
+    guessSyntax: true
+    tabWidth: 4
+    lineNumbersInTable: true
+    lineNos: true
+    codeFences: true
+  goldmark:
+    renderer:
+      unsafe: true # enable html in markdown
+
+# .Site.Params
+params:
+  # CDN 地址
+  # CDN URL
+  publicCDN: "" # e.g. https://cdn.jsdelivr.net/gh/{{user}}/{{repo}}@latest/
+
+  # 在网站顶部显示标题和摘要，使用 .Site.Title 和 .Site.Params.Description
+  # Display title and description at the top of the page, use .Site.Title and .Site.Params.Description
+  topTitle: true
+
+  # 在首页顶部创建一个通知部分
+  # Create a Announcement section at the top of the home page
+  announcement:
+    enabled: true
+    file: "assets/README.md" # assets/README.md
+
+  # 评论系统
+  # Comment system
+  comments:
+    enabled: true
+    provider: "custom" # custom | giscus
+    # giscus: &giscus
+    #   repo: "Ice-Hazymoon/hugo-theme-luna"
+    #   repoID: "R_kgDOHQOwYw"
+    #   category: "Comments"
+    #   categoryID: "DIC_kwDOHQOwY84CP0Sy"
+    #   mapping: "title"
+    #   reactionsEnabled: 1
+    #   emitMetadata: 0
+    #   lazy: false
+    #   lang: "en"
+
+  # Rss 配置
+  # RSS configuration
+  rss:
+    # 如果为 false，你必须设置 Output Formats，请查看：https://gohugo.io/templates/output-formats#customizing-output-formats
+    # If false, you must set Output Formats, see: https://gohugo.io/templates/output-formats#customizing-output-formats
+    enabled: true
+    # 是否输出全文
+    # Output full text
+    fullText: true
+
+  # 如果为 false，你必须设置 Output Formats，请查看：https://gohugo.io/templates/output-formats#customizing-output-formats
+  # If false, you must set Output Formats, see: https://gohugo.io/templates/output-formats#customizing-output-formats
+  sitemap: true
+
+  # 网站主题颜色
+  # Site theme colors
+  themeColor: "#7B85BE"
+
+  # 设置网站为黑白模式，通常用于哀悼活动
+  # Set website to black and white, usually for mourning events
+  blackAndWhite: false
+
+  # 输出一个漂亮的控制台日志
+  # Output a nice console log
+  console:
+    enabled: true
+    leftColor: "#dd6065"
+    leftText: "Hugo Theme Luna"
+    rightColor: "#feb462"
+    rightText: "Powered by Hugo ❤ Luna"
+
+  # 标题计数器
+  # Title counter
+  headlineCounter: false
+
+  # 固定导航栏
+  # Fixed navigation bar
+  fixedNav: false
+
+  # 网站字体
+  # Site font
+  # font: '"Times New Roman", Times, "Heti Song", serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
+  font: 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif'
+
+  # 自定义脚本
+  # ts/custom.ts
+  customScript:
+    enabled: false
+    pjax: true # Auto-reload in pjax mode
+
+  # 网站底部显示运行时间
+  # Show site runtime
+  runTime:
+    enabled: true
+    # 网站创建时间
+    # Site creation time
+    creatTime: 2023/03/18
+  
+  #  网站创建年份
+  # Site creation year
+  since: "2023"
+
+  # 显示文章过时提醒
+  # show warning when outdated info detected
+  outdatedInfoWarning:
+    enabled: true
+    # 超过该天数将显示过时提醒
+    # A timeout reminder will be displayed if the last modification time exceeds that number of days
+    day: 365
+
+  # 自动切换夜间模式（使用设备设置）
+  # Automatic switching of night mode (using device settings)
+  autoDarkMode: false
+
+  # 文章分享功能
+  share:
+    twitter: false
+    facebook: false
+    weibo: false
+    copyLinkText: false
+    qrcode: false
+  
+  # qrcodeAPI: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="
+
+  # 文章许可设置
+  # license
+  license:
+    enabled: true
+    name: "CC BY-NC-ND 4.0"
+    icon: "Cc-by-nc-nd.svg" # in assets folder
+    url: "https: //creativecommons.org/licenses/by-nc-nd/4.0"
+
+  # 显示右上角 i18n 切换按钮
+  # Display i18n toggle button
+  i18nlist: false
+
+  # GitHub 页面设置
+  # github page
+  # github:
+  #   id: "torvalds" # or ["torvalds", "gvanrossum"]
+  #   minStars: 5 # 最小 star 项目 / min stars
+
+  # Twitter 页面设置
+  # tweet page
+  # twitter:
+  #   enabled: false
+  #   rsshub: "https://rsshub.rssforever.com" # rsshub url, see https://github.com/DIYgod/RSSHub
+  #   id: "GenshinImpact" # Twitter ID
+  #   # 如果为 true，Hugo 将下载图片和视频并进行优化，如果你在中国大陆地区，请谨慎启用这个选项
+  #   # If enabled, Hugo will download videos and images from the Tweet and optimize them
+  #   imageProcessing: true
+
+  # 开启图片放大功能
+  # Image Zoom Plugin
+  # see https://github.com/francoischalifour/medium-zoom
+  imageZoom: true
+
+  # 图片懒加载
+  # lazyload image
+  lazyload: false
+
+  # 更快速的阅读英文内容, 参考：https://bionic-reading.com/
+  # Read English content faster, see https://bionic-reading.com/
+  bionicReading:
+    enabled: true
+    autoBionic: false # 自动启用 Bionic Reading / auto enable Bionic Reading
+    skipLinks: false # 跳过链接 / skip links
+    excludeWords: [] # 忽略的单词 / ignored words
+    excludeNodeNames: [] # 忽略的节点名称 / ignored node names
+    excludeClasses: ['github'] # 忽略的类名 / ignored classes
+
+  # 启用谷歌翻译插件
+  # enable google translate in footer
+  googleTranslate: false
+
+  # 优化中文排版，请参考：https://github.com/vinta/pangu.js
+  # Optimize Chinese typography, see: https://github.com/vinta/pangu.js
+  pangu: true
+
+  # 开启本地搜索插件
+  # enable local search plugin
+  search: true
+
+  # 文章页显示最后修改时间
+  # For outdated reminders
+  lastmod: true
+
+  # 显示阅读时间
+  # show reading time
+  readingTime: true
+
+  # 显示文章字数
+  # show word count
+  wordCount: true
+
+  # 开启文章内目录，可以在页面内单独设置
+  # Show table of contents, You can enable it separately in the page
+  toc:
+    enabled: true
+    # 超过这个字数后将显示目录
+    # When the article word count is greater than this value, the TOC will be displayed
+    wordCount: 400 
+
+  # 加密功能
+  # encryption articles
+  HugoEncrypt:
+    # 默认密码
+    # default password
+    Password: "123456"
+    # 密码缓存选项 "session" or "local"
+    # or "local"
+    Storage: "session"
+
+  # 开启 Pjax 无刷新加载
+  # Enable pjax with swup.js
+  pjax: true
+
+  # 开启 PWA
+  # use service worker
+  pwa: true
+
+  # 开启数学公式
+  # katex
+  katex: true
+
+  # 开启返回顶部按钮
+  # backtop button
+  backtop: true
+
+  # 文章封面图片纵横比
+  # article image aspect ratio
+  featuredImageHeight: "42%" #42% | false
+
+  # 默认文章封面图片，不会显示在内容页面
+  # Default post card featured image, not displayed on content pages
+  defaultFeaturedImage: false # false | featured.png in assets folder | https://unsplash.it/1920/1080/?random={{timestamp}}
+
+  # 自动调整图片大小并兼容 Webp 格式
+  # Optimize your images and SEO
+  imageProcessing:
+    cover: true
+    content: true
+    autoResize:
+      - 1080
+      - 1440
+    webp: true
+
+  # 设置推特卡片样式
+  opengraph:
+    twitter: # see https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started
+      cardType: summary_large_image # summary | summary_large_image
+      site: "@Ice_Hazymoon"
+    image: "featured.png" # in assets folder | false
+
+  author: 白石京
+  keywords:
+    - Hugo
+    - Hugo Theme
+    - Luna
+  description: "坐标🍁的生活博客"
+
+build:
+  noJSConfigInAssets: true
+
+languages:
+  zh-cn:
+    menu:
+      main:
+        - *mainMenuHome
+        - *mainMenuAbout
+        - *mainMenuArchives
+        # - *mainMenuCategories
+        # - *mainMenuTags
+        - *mainMenuLinks
+        - *mainMenuSearch
+        - *mainMenuRSS
+      sub:
+        - name: Categories
+          weight: 20
+          identifier: categories
+          params:
+            icon: eva eva-folder
+          url: /categories/
+        - name: Tags
+          weight: 30
+          identifier: tags
+          params:
+            icon: eva eva-pricetags
+          url: /tags/
+    contentDir: content/zh-cn
+    languageName: 中文
+    params:
+      languageIcon: "images/i18n/zh-cn.svg" # in assets folder
+      # font: "Times New Roman,Times,Heti Song,serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol"
+      font: 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif'
+      # twitter: 
+      #   enabled: true
+      #   rsshub: "https://rsshub.rssforever.com"
+      #   id: "Ice_Hazymoon"
+      #   imageProcessing: true
+      # github:
+      #   id: "Ice-Hazymoon"
+      #   minStars: 10
+      license:
+        enabled: true
+        name: "署名 - 非商业性使用 - 禁止演绎 4.0"
+        icon: "Cc-by-nc-nd.svg" # in assets folder
+        url: "https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"
+      announcement:
+        enabled: true
+        file: "README.md"
+      comments:
+        enabled: true
+        provider: "custom"
+        # giscus:
+        #   <<: *giscus
+        #   lang: "zh-CN"
+  en-us:
+    contentDir: content/en-us
+    languageName: English
+    params:
+      languageIcon: "images/i18n/en-us.svg" # in assets folder
+
+staticDir:
+  - static

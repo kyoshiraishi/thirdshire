@@ -1,0 +1,20 @@
+.page-search {
+    .search-results-items {
+        &:hover {
+            div:first-child {
+                color: var(--theme);
+            }
+        }
+        &:last-child {
+            @apply border-none;
+        }
+        &:first-child {
+            @apply relative;
+            &:after {
+                content: '\ea90';
+                font-family: Eva-Icons;
+                @apply absolute right-0 top-2 opacity-50;
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+public
+resources
+*.code-workspace
+/.vscode/
+themes
+node_modules
+.github
+
+### macOS ###
+# General
+*/.DS_Store
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
